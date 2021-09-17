@@ -1,0 +1,25 @@
+youtube-dl -j --flat-playlist https://www.youtube.com/playlist?list=PLRiuXjlcutvbdWuiOsobmy57ZZGm2j7x3 > for_the_books.json
+> gives you output like for_the_books.json which is pretty much everything you need except thumbnails
+
+import re
+import requests
+import subprocess
+
+with open('results.txt') as f:
+    for line in f:
+        proc = subprocess.Popen(['youtube-dl', '--list-thumbnails', line], stdout=subprocess.PIPE)
+        youtubedl_output, err = proc.communicate()
+        imgurl = re.search("(?P<url>https?://[^\s]+)", youtubedl_output).group('url')
+        r = requests.get(imgurl)
+        if r.status_code == 200:
+            with open(imgurl.split('/')[4] + '.jpg', 'wb') as file:
+                for chunk in r.iter_content(1024):
+                    file.write(chunk)
+
+
+ideas for project:
+- script that runs periodically checking if there are updates with playlists, handles downloading and storing them in mega.nz using user's mega.nz credentials
+- gui that user interacts with, serves as a time machine for youtube playlists where they can see thumbnails, titles, descriptions of videos and there is an option to download/play video
+- a login in the gui to a users youtube that displays all the users playlists and asks them which ones they want to backup
+   then do a quick estimation using the characteristics of the videos in the playlist vs the users mega.nz available space to say
+   whether they will or wont have enough space to back up their playlists
