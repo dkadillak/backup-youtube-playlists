@@ -1,6 +1,8 @@
 youtube-dl -j --flat-playlist https://www.youtube.com/playlist?list=PLRiuXjlcutvbdWuiOsobmy57ZZGm2j7x3 > for_the_books.json
 > gives you output like for_the_books.json which is pretty much everything you need except thumbnails
 
+
+fetching thumbnails:
 import re
 import requests
 import subprocess
@@ -15,6 +17,15 @@ with open('results.txt') as f:
             with open(imgurl.split('/')[4] + '.jpg', 'wb') as file:
                 for chunk in r.iter_content(1024):
                     file.write(chunk)
+
+get length of video:
+youtube-dl --get-duration https://www.youtube.com/watch?v=syK3EZpi1sw
+54:44
+
+calculating length of video:
+File Size = Bitrate x duration x compression ratio
+720p (HD)	1 Mbps	5MB	3.5 hours
+youtube-dl typically uses 720p max
 
 
 ideas for project:
