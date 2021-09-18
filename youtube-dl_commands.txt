@@ -65,3 +65,11 @@ script flow:
             - if current # vids > master_playlist.json length download current videos not in master list, add to master_playlist.json
             - if current # vids < master_playlist.json length don't download anything
 
+
+STILL TO FIGURE OUT
+- downloading description of video and other details like date uploaded
+- using subprocess to execute all commands
+- add description on how to run in readme
+    - add youtube-dl as dependency in
+- testing out downloading videos from a playlist using the -o flag to specify file structure
+- writing a gui
