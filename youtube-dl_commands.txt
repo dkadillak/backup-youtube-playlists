@@ -1,6 +1,12 @@
 youtube-dl -j --flat-playlist https://www.youtube.com/playlist?list=PLRiuXjlcutvbdWuiOsobmy57ZZGm2j7x3 > for_the_books.json
 > gives you output like for_the_books.json which is pretty much everything you need except thumbnails
 
+youtube-dl -j --flat-playlist https://www.youtube.com/playlist?list=PLRiuXjlcutvbdWuiOsobmy57ZZGm2j7x3  | wc -l
+> just give me the number of videos in a specific playlist
+
+youtube-dl --write-thumbnail --skip-download https://www.youtube.com/watch?v=ZBYwUaoJquM
+> get thumbnail
+
 
 fetching thumbnails:
 import re
@@ -34,3 +40,28 @@ ideas for project:
 - a login in the gui to a users youtube that displays all the users playlists and asks them which ones they want to backup
    then do a quick estimation using the characteristics of the videos in the playlist vs the users mega.nz available space to say
    whether they will or wont have enough space to back up their playlists
+
+
+ideas after talking to colt:
+- just store files locally on user's computer
+- user will have to decide how often to back up playlists
+- gui is in charge of picking which videos to not backup anymore
+
+gui flow on first use:
+- enter playlists to backup
+    - roughly calculate storage space needed to store videos
+- enter location to save videos in
+
+What should be in GUI:
+- section to add playlists to track
+- status tracker, what is the app doing
+- section to browse playlists and see thumbnails, vid (possibly play vid), and description
+    - section allows users to delete video from playlist (which updates master_playlist.json)
+script flow:
+- for each playlist in playlists list
+    * check if master_playlist.json file exists for that playlist
+        - if not, download vids in playlist, thumbnails, description, store all files in correct location (<user specified vid location>/<playlist_name>/<video_name>
+        - if yes, get current number of videos in playlist
+            - if current # vids > master_playlist.json length download current videos not in master list, add to master_playlist.json
+            - if current # vids < master_playlist.json length don't download anything
+
