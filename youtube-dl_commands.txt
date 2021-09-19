@@ -1,3 +1,41 @@
+Flow of program logic:
+- Step 1 get title of playlist (Capture stdout response)
+youtube-dl --get-filename -o "%(playlist_title)s" <playlist url>
+
+- Step 2, check if playlist name exists in the 'saved-playlists' folder
+    No -> proceed to step 3b then your done
+    Yes -> proceed to step 3a then keep going
+
+- Step 3a, compare length of new playlist vs what we have stored
+    new playlist (capture std out):
+        youtube-dl -j --flat-playlist <playlist url>  | wc -l
+
+    old playlist (using title of playlist captured from Step 1)
+        create name <playlist>_MASTER.json
+        cat <playlist>_MASTER.json | wc -l
+        capture stdout
+
+    now compare the two values, if new playlist > old_playlist we need to see what video is missing from <playlist name>_MASTER.json
+        this means we actually need the list of files in the new playlist
+            youtube-dl -j --flat-playlist <playlist url>  > <playlist name>.txt
+
+- Step 3b, just download everything! create <playlist>_MASTER.json file
+    youtube-dl --write-thumbnail --write-info-json -w -o "./saved-playlists/%(playlist_title)s/%(playlist_index)s:%(title)s/%(title)s.%(ext)s" <playlist url>
+    now save that master list!
+            youtube-dl -j --flat-playlist <playlist url>  > <playlist name>_MASTER.txt
+
+- Step 4, compare json contents
+remember with these unicode strings we need to do this to them str.encode('utf-16', 'surrogatepass').decode('utf-16') to get things like '𝓓𝓡𝓔𝓐𝓜 𝓕𝓔𝓔𝓣'
+
+
+
+
+short public playlist link for testing:
+https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc
+
+short unlisted playlist link for testing:
+https://youtube.com/playlist?list=PLD5tdhS33Hf4i1YyVvP0-j63VghX4It9c
+
 youtube-dl -j --flat-playlist https://www.youtube.com/playlist?list=PLRiuXjlcutvbdWuiOsobmy57ZZGm2j7x3 > for_the_books.json
 > gives you output like for_the_books.json which is pretty much everything you need except thumbnails
 
@@ -7,22 +45,21 @@ youtube-dl -j --flat-playlist https://www.youtube.com/playlist?list=PLRiuXjlcutv
 youtube-dl --write-thumbnail --skip-download https://www.youtube.com/watch?v=ZBYwUaoJquM
 > get thumbnail
 
+youtube-dl -o "./saved-playlists/%(playlist_title)s/%(playlist_index)s/%(title)s.%(ext)s" https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc
+> save playlist to folder called 'saved-playlists' in current dir. Folder Structure is /playlist-title/playlist-index/video
 
-fetching thumbnails:
-import re
-import requests
-import subprocess
+youtube-dl --write-description -o "./saved-playlists/%(playlist_title)s/%(playlist_index)s:%(title)s/%(title)s.%(ext)s" https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc
+> save playlist to individual folder like above and write the description for each video in folder as well
 
-with open('results.txt') as f:
-    for line in f:
-        proc = subprocess.Popen(['youtube-dl', '--list-thumbnails', line], stdout=subprocess.PIPE)
-        youtubedl_output, err = proc.communicate()
-        imgurl = re.search("(?P<url>https?://[^\s]+)", youtubedl_output).group('url')
-        r = requests.get(imgurl)
-        if r.status_code == 200:
-            with open(imgurl.split('/')[4] + '.jpg', 'wb') as file:
-                for chunk in r.iter_content(1024):
-                    file.write(chunk)
+youtube-dl --write-thumbnail --write-description -o "./saved-playlists/%(playlist_title)s/%(playlist_index)s:%(title)s/%(title)s.%(ext)s" https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc
+> savel playlist to individual folder, save description and thumbnail in folder as well
+
+youtube-dl --write-thumbnail --write-info-json -w -o "./saved-playlists/%(playlist_title)s/%(playlist_index)s:%(title)s/%(title)s.%(ext)s" https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc
+> most current call that does all the actions we need
+
+youtube-dl --get-filename -o "%(playlist_title)s" https://youtube.com/playlist?list=PLD5tdhS33Hf4i1YyVvP0-j63VghX4It9c
+> just get title of playlist
+
 
 get length of video:
 youtube-dl --get-duration https://www.youtube.com/watch?v=syK3EZpi1sw
