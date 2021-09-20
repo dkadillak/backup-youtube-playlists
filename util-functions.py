@@ -1,4 +1,5 @@
 import json
+import sys
 from shlex import split
 from os import getcwd, path, remove
 from subprocess import run
@@ -226,28 +227,23 @@ def back_up_playlist(playlist_url:str) -> None:
             print('UPDATE COMPLETE')
 
         else:
-            print('\tbacked up playlist is up to date! no need to update')
+            print('\tbacked up playlist is up to date! no need to update\n\n')
     else:
 
         print('\tplaylist has not been backed up, fetching files for initial backup procedure...')
         # no -> step 3b initial backup procedure
         initial_backup_procedure(playlist_title, playlist_url)
 
-        print('INITIAL BACKUP COMPLETE')
+        print('INITIAL BACKUP COMPLETE\n\n')
 
 
 if __name__=='__main__':
-    #update_master_playlist('unlisted test.txt', 'test.txt')
-    #print(get_playlist_title("https://youtube.com/playlist?list=PLD5tdhS33Hf4i1YyVvP0-j63VghX4It9c"))
-    #print(get_playlist_title("https://youtube.com/playlist?list=PLD5tdhS33Hf6EvOhJ8M4VBX6J-deV6aC0"))
-
-    #print(get_length_of_playlist("https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc"))
-
-    #initial_backup_procedure("https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc")
-
-    #print(need_to_update("https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc"))
-
-    back_up_playlist("https://youtube.com/playlist?list=PLD5tdhS33Hf5HwwrBm9iDoIjjOuZjoVkc")
+    if len(sys.argv) != 2:
+        sys.exit("Please provide a .txt file where each line is a playlist you want to backup")
+    else:
+        with open(sys.argv[1], 'r') as links:
+            for link in links:
+                back_up_playlist(link.strip())
 
 
 
