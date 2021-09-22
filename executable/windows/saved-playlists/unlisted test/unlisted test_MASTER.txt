@@ -1,0 +1,2 @@
+{"ie_key": "Youtube", "id": "eLC7o8Orqzc", "description": null, "title": "I killed Satan in the gulag", "_type": "url", "duration": 11.0, "uploader": "Skribe81", "url": "eLC7o8Orqzc", "view_count": null}
+{"ie_key": "Youtube", "id": "2-E7QeIqtLQ", "description": null, "title": "Twin Steps  - The Re Arranger", "_type": "url", "duration": 153.0, "uploader": "corporate meatslave", "url": "2-E7QeIqtLQ", "view_count": null}
