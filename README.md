@@ -44,6 +44,7 @@ Once you've run the ```backup-youtube-playlists``` executable, you can run it ag
 ## example execution
 assume I have downloaded ```youtube-dl```, the executable ```backup-youtube-playlists```, have added both to my $PATH, and have created a file ```playlists.txt``` which contains two links
 > https://www.youtube.com/playlist?list=PLD5tdhS33Hf3HwerBm9iDoIjjOuZjoVkv -> a public playlist called 'basketball-highlights', contains 1 video 
+>  
 > https://www.youtube.com/playlist?list=PLD5tdhS33Hf3HwerBm9iDoIjjOuZjoVkv -> a public playlist called 'funny videos', contains 1 video
 
 *contents of ```playlists.txt```*
