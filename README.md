@@ -1,4 +1,4 @@
-# youtube-playlist-backup
+# backup-youtube-playlists
 *tool that backs up your youtube playlists*
 
 ## Problem Statement
