@@ -4,6 +4,7 @@
 ## Problem Statement
 YouTube playlists are subject to change! Videos can be taken down for a whole host of reasons. Unfortunately, there is never information available for what those videos in your playlist were. **All you see is the following:**
 ![deleted_video.png](assets/pics/deleted-vid.png) 
+
 This project was created to allow users with a link to any ```Public``` or ```Unlisted``` YouTube playlists to be able to backup those playlist locally on their own machines, so they never have to wonder about the state of any YouTube playlists that they enjoy. 
 
 ## What this tool does
