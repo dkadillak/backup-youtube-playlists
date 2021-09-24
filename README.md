@@ -1,5 +1,5 @@
 # youtube-playlist-backup
-*python script that backs up your youtube playlists*
+*tool that backs up your youtube playlists*
 
 ## Problem Statement
 YouTube playlists are subject to change! Videos can be taken down for a whole host of reasons. Unfortunately, there is never information available for what those videos in your playlist were. **All you see is the following:**
