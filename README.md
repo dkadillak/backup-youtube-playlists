@@ -28,7 +28,7 @@ Once you've run the ```backup-youtube-playlists``` executable, you can run it ag
 ## What you need to run
 1. ```youtube-dl```, which you can find at https://ytdl-org.github.io/youtube-dl/download.html
 2. ``python``version 2.6, 2.7, or 3.2+ except if your running on Windows
-3. ```backup-youtube-playlists``` executable found in the ```releases``` page
+3. ```backup-youtube-playlists``` executable found in the ```Releases``` page
 4. a ```.txt``` file that lists the urls of the playlists you want backed up
 
 ## execution flow for using the executable release
