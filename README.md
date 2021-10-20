@@ -35,7 +35,7 @@ Once you've run the ```backup-youtube-playlists``` executable, you can run it ag
 1. download ```youtube-dl``` and add it to your $PATH
 2. save the ```backup-youtube-playlists``` executable specific to your system, add it to your $PATH
 4. create a .txt file that contains the links to the playlists you want to backup
-5. navigate to where you would like the backed up playlist(s) to be located (for step 6 i'll call this file playlists.txt)
+5. navigate to where you would like the backed up playlist(s) to be located (for step 5 i'll call this file playlists.txt)
 6. run ```$backup-youtube-playlists <path to playlists.txt>```
 7. you should see some output in your console regarding the progress of the playlists downloads
 
@@ -45,12 +45,12 @@ Once you've run the ```backup-youtube-playlists``` executable, you can run it ag
 assume I have downloaded ```youtube-dl```, the executable ```backup-youtube-playlists```, have added both to my $PATH, and have created a file ```playlists.txt``` which contains two links
 > https://www.youtube.com/playlist?list=PLD5tdhS33Hf3HwerBm9iDoIjjOuZjoVkv -> a public playlist called 'basketball-highlights', contains 1 video 
 >  
-> https://www.youtube.com/playlist?list=PLD5tdhS33Hf3HwerBm9iDoIjjOuZjoVkv -> a public playlist called 'funny videos', contains 1 video
+> https://www.youtube.com/playlist?list=PLD6tdhS33Hf3HwerBm9iDoIjjOuZjoVkP -> a public playlist called 'funny videos', contains 1 video
 
 *contents of ```playlists.txt```*
 ```
 https://www.youtube.com/playlist?list=PLD5tdhS33Hf3HwerBm9iDoIjjOuZjoVkv 
-https://www.youtube.com/playlist?list=PLD5tdhS33Hf3HwerBm9iDoIjjOuZjoVkv
+https://www.youtube.com/playlist?list=PLD6tdhS33Hf3HwerBm9iDoIjjOuZjoVkP
 ```
 
 Now I run the following command in the same directory of ```playlists.txt```
